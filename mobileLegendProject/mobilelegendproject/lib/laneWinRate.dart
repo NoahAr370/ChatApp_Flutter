@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_animation_text/flutter_gradient_animation_text.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 //import 'package:mobilelegendproject/provider/theme.dart';
 import 'package:mobilelegendproject/provider/themeProvider.dart';
 import 'package:provider/provider.dart';
@@ -27,25 +29,29 @@ class _LanewinrateState extends State<Lanewinrate> {
     Center(
       child: Text(
         "Home",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        style: TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
       ),
     ),
     Center(
       child: Text("Explore",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)),
     ),
     Center(
       child: Text("Ranking",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)),
     ),
     Center(
       child: Text("profile",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)),
     )
   ];
   @override
   Widget build(BuildContext context) {
-    final pVider = Provider.of<Themeprovider>(context);
+    final pVider = Provider.of<Themeprovider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 247, 247, 247),
@@ -166,7 +172,38 @@ class _LanewinrateState extends State<Lanewinrate> {
                 ],
               ),
               _MetaShift(),
-              pages[currentIndex],
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: Container(
+                    width: 170,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [
+                              const Color.fromARGB(255, 186, 197, 68),
+                              Colors.deepPurple,
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight),
+                        borderRadius: BorderRadius.circular(16)),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (currentIndex == 3) {
+                          context.go("/profile");
+                          setState(() {});
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          iconColor: Colors.white,
+                          backgroundColor: Colors.transparent),
+                      child: Center(child: pages[currentIndex]),
+                    )),
+              ),
+              SizedBox(
+                height: 10,
+              )
             ],
           ),
         ),
@@ -185,27 +222,31 @@ class _LanewinrateState extends State<Lanewinrate> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: "Home",
-                backgroundColor:
-                    pVider.isDark ? Color(0XFFFFD700) : Color(0xFFB0BEC5)),
+                backgroundColor: pVider.isDark
+                    ? Color.fromARGB(255, 147, 131, 37)
+                    : Color(0xFFB0BEC5)),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.explore,
                 ),
                 label: "Explore",
-                backgroundColor:
-                    pVider.isDark ? Color(0XFFFFD700) : Color(0XFFB0BEC5)),
+                backgroundColor: pVider.isDark
+                    ? Color.fromARGB(255, 147, 131, 37)
+                    : Color(0XFFB0BEC5)),
             BottomNavigationBarItem(
                 //icon: Icon(Icons.workspace_premium),
                 //icon: Icon(Icons.emoji_events),
                 icon: Icon(Icons.military_tech),
                 label: "Ranking",
-                backgroundColor:
-                    pVider.isDark ? Color(0XFFFFD700) : Color(0XFFB0BEC5)),
+                backgroundColor: pVider.isDark
+                    ? Color.fromARGB(255, 147, 131, 37)
+                    : Color(0XFFB0BEC5)),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: "Profile",
-                backgroundColor:
-                    pVider.isDark ? Color(0XFFFFD700) : Color(0XFFB0BEC5))
+                backgroundColor: pVider.isDark
+                    ? Color.fromARGB(255, 147, 131, 37)
+                    : Color(0XFFB0BEC5))
           ]),
     );
   }
@@ -356,7 +397,7 @@ class _LanewinrateState extends State<Lanewinrate> {
   // ignore: non_constant_identifier_names
   _MetaShift() {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       margin: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(17),
@@ -415,13 +456,13 @@ class _LanewinrateState extends State<Lanewinrate> {
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall
-                              ?.copyWith(color: Colors.white, fontSize: 8))
+                              ?.copyWith(color: Colors.white, fontSize: 7))
                     ],
                   ),
                 ),
               ),
               SizedBox(
-                width: 33,
+                width: 35,
               ),
               Container(
                 width: 70,
@@ -455,7 +496,7 @@ class _LanewinrateState extends State<Lanewinrate> {
                 ),
               ),
               SizedBox(
-                width: 33,
+                width: 35,
               ),
               Container(
                 width: 70,
