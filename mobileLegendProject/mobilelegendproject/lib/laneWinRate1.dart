@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gradient_animation_text/flutter_gradient_animation_text.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-//import 'package:mobilelegendproject/provider/theme.dart';
 import 'package:mobilelegendproject/provider/themeProvider.dart';
 import 'package:provider/provider.dart';
 
-class Lanewinrate extends StatefulWidget {
-  const Lanewinrate({super.key});
+class Lanewinrate1 extends StatefulWidget {
+  const Lanewinrate1({super.key});
 
   @override
-  State<Lanewinrate> createState() => _LanewinrateState();
+  State<Lanewinrate1> createState() => _LanewinrateState();
 }
 
-class _LanewinrateState extends State<Lanewinrate> {
+class _LanewinrateState extends State<Lanewinrate1> {
   final gradientcolor = [
     Color(0xff8f00ff), // violet
     Colors.indigo,
@@ -25,30 +23,7 @@ class _LanewinrateState extends State<Lanewinrate> {
     Colors.red,
   ];
   int currentIndex = 0;
-  final List<Widget> pages = [
-    // Center(
-    //   child: Text(
-    //     "Home",
-    //     style: TextStyle(
-    //         fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
-    //   ),
-    // ),
-    // Center(
-    //   child: Text("Explore",
-    //       style: TextStyle(
-    //           fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)),
-    // ),
-    // Center(
-    //   child: Text("Ranking",
-    //       style: TextStyle(
-    //           fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)),
-    // ),
-    // Center(
-    //   child: Text("profile",
-    //       style: TextStyle(
-    //           fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white)),
-    // )
-  ];
+
   @override
   Widget build(BuildContext context) {
     final pVider = Provider.of<Themeprovider>(context, listen: false);
@@ -123,84 +98,43 @@ class _LanewinrateState extends State<Lanewinrate> {
                 ),
               ),
               _gsProfile(),
+              _Edith(),
+              _Lane(),
               ListView(
                 physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
-                //physics: NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(10),
                 children: [
                   laneCard(
-                    title: "GOLD\nLANE",
-                    subtitle: "SIGNATURE",
-                    subhero: ":BEATRIX",
-                    hero: "BEATRIX",
-                    winRate: "58.9%",
-                    image: "assets/images/mm.jpg",
-                  ),
+                      image: "assets/images/mm.jpg",
+                      number: "1",
+                      hero: "BEATRIX",
+                      winrate: "58.9%",
+                      c1: "Marksman",
+                      c2: "LateGame"),
                   laneCard(
-                    title: "MID\nLANE",
-                    subtitle: "SIGNATURE",
-                    subhero: ":YVE",
-                    hero: "VALENTINA",
-                    winRate: "54.5%",
-                    image: "assets/images/mage.jpg",
-                  ),
+                      image: "assets/images/mage.jpg",
+                      number: "2",
+                      hero: "BRODY",
+                      winrate: "55.2%",
+                      c1: "Marksman",
+                      c2: "Burst DAG"),
                   laneCard(
-                    title: "EXP\nLANE",
-                    subtitle: "SIGNATURE",
-                    subhero: ":YU ZHONE",
-                    hero: "TERIZLA",
-                    winRate: "53.1%",
-                    image: "assets/images/fg.jpg",
-                  ),
-                  laneCard(
-                    title: "JUNGLE\nLANE",
-                    subtitle: "SIGNATURE",
-                    subhero: ":LANCELOT",
-                    hero: "NOLAN",
-                    winRate: "61.2%",
-                    image: "assets/images/nolan.jpg",
-                  ),
-                  laneCard(
-                    title: "ROAM\nLANE",
-                    subtitle: "SIGNATURE",
-                    subhero: ":KHUFRA",
-                    hero: "MINOTAUR",
-                    winRate: "53.1%",
-                    image: "assets/images/tank.jpg",
-                  ),
+                      image: "assets/images/fg.jpg",
+                      number: "3",
+                      hero: "BEATRIX",
+                      winrate: "54.8%",
+                      c1: "Marksman",
+                      c2: "ANTI-DMG"),
                 ],
               ),
               _MetaShift(),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
-              // Center(
-              //   child: Container(
-              //       width: 170,
-              //       height: 50,
-              //       decoration: BoxDecoration(
-              //           gradient: LinearGradient(
-              //               colors: [
-              //                 const Color.fromARGB(255, 186, 197, 68),
-              //                 Colors.deepPurple,
-              //               ],
-              //               begin: Alignment.topLeft,
-              //               end: Alignment.bottomRight),
-              //           borderRadius: BorderRadius.circular(16)),
-              //       child: ElevatedButton(
-              //         onPressed: () {
-              //           if (currentIndex == 3) {
-              //             context.go("/profile");
-              //             setState(() {});
-              //           }
-              //         },
-              //         style: ElevatedButton.styleFrom(
-              //             iconColor: Colors.white,
-              //             backgroundColor: Colors.transparent),
-              //         child: Center(child: pages[currentIndex]),
-              //       )),
-              // ),
+              SizedBox(
+                height: 10,
+              )
             ],
           ),
         ),
@@ -243,6 +177,8 @@ class _LanewinrateState extends State<Lanewinrate> {
               label: "Explore",
             ),
             BottomNavigationBarItem(
+              //icon: Icon(Icons.workspace_premium),
+              //icon: Icon(Icons.emoji_events),
               icon: Icon(Icons.military_tech),
               label: "Ranking",
             ),
@@ -310,30 +246,20 @@ class _LanewinrateState extends State<Lanewinrate> {
                     )
                   ],
                 ),
-                GradientAnimationText(
-                    text: Text(
-                      "GUSION",
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontSize: 50,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    colors: gradientcolor,
-                    duration: Duration(seconds: 1)),
-                // Text(
-                //   "GUSION",
-                //   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                //       fontSize: 50,
-                //       fontWeight: FontWeight.bold,
-                //       color: Colors.white),
-                // ),
+                Text(
+                  "GUSION",
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
                 Row(
                   children: [
                     Text(
                       "WIN RATE",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 14,
-                          color: Colors.limeAccent,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
@@ -343,7 +269,7 @@ class _LanewinrateState extends State<Lanewinrate> {
                       "MATCHES",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 14,
-                          color: Colors.limeAccent,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
@@ -354,7 +280,7 @@ class _LanewinrateState extends State<Lanewinrate> {
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: Colors.limeAccent),
+                          color: Colors.white),
                     ),
                   ],
                 ),
@@ -364,7 +290,7 @@ class _LanewinrateState extends State<Lanewinrate> {
                       "64.2%",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 28,
-                          color: Color(0XFFFFD700),
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
@@ -374,7 +300,7 @@ class _LanewinrateState extends State<Lanewinrate> {
                       "1,240",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 28,
-                          color: Color(0XFFFFD700),
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
@@ -384,7 +310,7 @@ class _LanewinrateState extends State<Lanewinrate> {
                       "42.5%",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 28,
-                          color: Color(0XFFFFD700),
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -392,6 +318,139 @@ class _LanewinrateState extends State<Lanewinrate> {
               ],
             ),
           )
+        ],
+      ),
+    );
+  }
+
+  _Edith() {
+    return Container(
+      margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(colors: [
+            Colors.deepPurple,
+            // const Color.fromARGB(255, 42, 72, 86)
+            const Color.fromARGB(255, 210, 190, 129)
+          ])),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Icon(
+                Icons.trending_up,
+                color: Colors.amber,
+                size: 35,
+              ),
+              Text(
+                "RISINGSTAR",
+                style: GoogleFonts.poppins(color: Colors.white, fontSize: 17),
+              )
+            ],
+          ),
+          Text(
+            "EDITH",
+            style: GoogleFonts.poppins(
+                color: Colors.white, fontSize: 23, fontWeight: FontWeight.bold),
+          ),
+          RichText(
+              text: const TextSpan(
+                  style:
+                      TextStyle(color: Colors.white, fontSize: 16, height: 1.5),
+                  children: [
+                TextSpan(text: "Win rate increased by "),
+                TextSpan(
+                    text: "+5.2%",
+                    style: TextStyle(
+                        color: Colors.deepOrangeAccent,
+                        fontWeight: FontWeight.bold)),
+                TextSpan(
+                  text: ' following recent\npatch adjustments.',
+                ),
+              ])),
+          SizedBox(
+            height: 15,
+          ),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusGeometry.circular(10),
+                  ),
+                  shadowColor: Colors.black,
+                  foregroundColor: Colors.black,
+                  backgroundColor: Color(0xFF7E57C2)),
+              onPressed: () {},
+              child: Center(
+                  child: Text(
+                "VIEW BUILD",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                    color: Colors.white),
+              )))
+        ],
+      ),
+    );
+  }
+
+  _Lane() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(15, 0, 15, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(15)),
+                  foregroundColor: Colors.black,
+                  shadowColor: Provider.of<Themeprovider>(context).isDark
+                      ? Colors.white
+                      : Colors.purple,
+                  backgroundColor: const Color.fromARGB(255, 0, 2, 2)),
+              onPressed: () {},
+              child: Text(
+                "GOLD LANE",
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              )),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(15)),
+                  foregroundColor: Colors.black,
+                  shadowColor: Provider.of<Themeprovider>(context).isDark
+                      ? Colors.white
+                      : Colors.purple,
+                  backgroundColor: const Color.fromARGB(255, 0, 2, 2)),
+              onPressed: () {},
+              child: Text(
+                "MID LANE",
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              )),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(15)),
+                  foregroundColor: Colors.black,
+                  shadowColor: Provider.of<Themeprovider>(context).isDark
+                      ? Colors.white
+                      : Colors.purple,
+                  backgroundColor: Colors.black),
+              onPressed: () {},
+              child: Text(
+                "EXP LANE",
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ))
         ],
       ),
     );
@@ -407,7 +466,7 @@ class _LanewinrateState extends State<Lanewinrate> {
           gradient: LinearGradient(colors: [
             Colors.deepPurple,
             // const Color.fromARGB(255, 42, 72, 86)
-            const Color.fromARGB(255, 227, 192, 90)
+            const Color.fromARGB(255, 210, 190, 129)
           ])),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -538,141 +597,150 @@ class _LanewinrateState extends State<Lanewinrate> {
       ),
     );
   }
-}
 
-Widget laneCard({
-  required String title,
-  required String subtitle,
-  required String subhero,
-  required String hero,
-  required String winRate,
-  required String image,
-}) {
-  return Container(
-    margin: const EdgeInsets.only(bottom: 16),
-    height: 120,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        //color: Colors.grey[900],
-        gradient: LinearGradient(colors: [
-          const Color.fromARGB(255, 96, 66, 147),
-          const Color.fromARGB(255, 242, 181, 0)
-        ])),
-    child: Row(
-      children: [
-        /// LEFT SIDE
+  Widget laneCard({
+    required String image,
+    required String hero,
+    required String winrate,
+    required String c1,
+    required String c2,
+    required String number,
+  }) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: EdgeInsets.fromLTRB(0, 0, 12, 10),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Colors.deepPurple,
+            const Color.fromARGB(255, 42, 72, 86)
 
-        Expanded(
-          flex: 4,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+            // const Color.fromARGB(255, 210, 190, 129)
+          ]),
+          borderRadius: BorderRadius.circular(10)),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Stack(
+              clipBehavior: Clip.none,
               children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 2),
+                      borderRadius: BorderRadius.circular(10)),
+                  width: 100,
+                  height: 100,
+                  child: ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(7),
+                    child: Image.asset(
+                      image,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 6),
+                Positioned(
+                    bottom: -12,
+                    right: -14,
+                    child: Container(
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 2),
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.black87),
+                      child: Center(
+                          child: Text(
+                        number,
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    )),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "BEATRIX",
+                  style: GoogleFonts.poppins(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
                 Row(
                   children: [
-                    Text(
-                      subtitle,
-                      style: TextStyle(
-                        color: Colors.grey[400],
-                        fontSize: 8,
+                    Container(
+                      width: 60,
+                      height: 25,
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.blueGrey),
+                      child: Center(
+                        child: Text(
+                          c1,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 9.5,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                    Text(
-                      subhero,
-                      style: TextStyle(
-                          color: Colors.grey[400],
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: 70,
+                      height: 25,
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.blueGrey),
+                      child: Center(
+                        child: Text(
+                          c2,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 9.5,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
                   ],
                 )
               ],
             ),
           ),
-        ),
-
-        /// RIGHT SIDE (Image + Gradient + Text)
-        Expanded(
-          flex: 6,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(16),
-              bottomRight: Radius.circular(16),
-            ),
-            child: Stack(
+          SizedBox(
+            width: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                /// Image
-                Positioned.fill(
-                  child: Image.asset(
-                    image,
-                    fit: BoxFit.cover,
-                  ),
+                Text(
+                  "WIN RATE",
+                  style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
-
-                /// Gradient overlay
-                Positioned.fill(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          // ignore: deprecated_member_use
-                          Colors.black.withOpacity(0.8),
-                          Colors.transparent,
-                        ],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
-                    ),
-                  ),
-                ),
-
-                /// Text
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "TOP PICK",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 10,
-                        ),
-                      ),
-                      Text(
-                        hero,
-                        style: const TextStyle(
-                          color: Colors.lightBlueAccent,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        "WIN RATE $winRate",
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
+                Text(
+                  winrate,
+                  style: GoogleFonts.poppins(
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 )
               ],
             ),
-          ),
-        ),
-      ],
-    ),
-  );
+          )
+        ],
+      ),
+    );
+  }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobilelegendproject/activePage.dart';
 import 'package:mobilelegendproject/laneWinRate.dart';
-//import 'package:mobilelegendproject/laneWinRate.dart';
+import 'package:mobilelegendproject/laneWinRate1.dart';
+import 'package:mobilelegendproject/loginPage.dart';
+
 import 'package:mobilelegendproject/profile.dart';
 import 'package:mobilelegendproject/provider/themeProvider.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +14,11 @@ final GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: "/",
-      builder: (context, state) => Lanewinrate(),
+      builder: (context, state) => Loginpage(),
     ),
+    GoRoute(path: "/home", builder: (context, state) => Activepage()),
+    GoRoute(path: "/explore", builder: (context, state) => Lanewinrate()),
+    GoRoute(path: "/ranking", builder: (context, state) => Lanewinrate1()),
     GoRoute(
       path: "/profile",
       builder: (context, state) => Profile(),

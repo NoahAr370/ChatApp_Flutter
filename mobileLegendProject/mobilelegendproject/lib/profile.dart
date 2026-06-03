@@ -107,36 +107,52 @@ class _ProfileState extends State<Profile> {
                 ),
               ],
             ),
-            ListView(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              children: [
-                makeListinformation(
-                    text1: "fighter",
-                    text2:
-                        "A Fighter is a balanced hero with both damage and durability. Fighters usually fight at close range and can survive longer than most damage dealers. They are commonly played in the EXP Lane and are strong in 1v1 battles and team fights.",
-                    image: "assets/images/me1.jpg"),
-                makeListinformation(
-                    text1: "Mage",
-                    text2:
-                        "A Mage is a hero that uses magic skills to deal burst damage and crowd control. Mages usually play in the Mid Lane because they can quickly rotate to help teammates.",
-                    image: "assets/images/me2.jpg"),
-                makeListinformation(
-                    text1: "Marksman",
-                    text2:
-                        "A Marksman is a ranged damage dealer that mainly uses basic attacks. Marksmen are weak early game but become extremely powerful in late game after getting items. They usually play in the Gold Lane.",
-                    image: "assets/images/me3.jpg"),
-                makeListinformation(
-                    text1: "Jungle",
-                    text2:
-                        "The Jungler is the hero responsible for farming jungle monsters, securing buffs, and helping teammates through rotations and ganks. The Jungler is one of the most important roles because they control the game's tempo.",
-                    image: "assets/images/me4.jpg"),
-                makeListinformation(
-                    text1: "Jungle",
-                    text2:
-                        "A Tank is a durable hero with high HP and defense. Tanks are usually the front line of the team and protect teammates during battles. Their main job is to absorb damage and create opportunities for the team.",
-                    image: "assets/images/me4.jpg"),
-              ],
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: 380,
+              height: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                // border: Border.all(
+                //     color: Provider.of<Themeprovider>(context).isDark
+                //         ? Colors.white
+                //         : Colors.black,
+                //     width: 2),
+                color: Colors.grey[500],
+              ),
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                children: [
+                  makeListinformation(
+                      text1: "fighter",
+                      text2:
+                          "A Fighter is a balanced hero with both damage and durability. Fighters usually fight at close range and can survive longer than most damage dealers. They are commonly played in the EXP Lane and are strong in 1v1 battles and team fights.",
+                      image: "assets/images/me1.jpg"),
+                  makeListinformation(
+                      text1: "Mage",
+                      text2:
+                          "A Mage is a hero that uses magic skills to deal burst damage and crowd control. Mages usually play in the Mid Lane because they can quickly rotate to help teammates.",
+                      image: "assets/images/me2.jpg"),
+                  makeListinformation(
+                      text1: "Marksman",
+                      text2:
+                          "A Marksman is a ranged damage dealer that mainly uses basic attacks. Marksmen are weak early game but become extremely powerful in late game after getting items. They usually play in the Gold Lane.",
+                      image: "assets/images/me3.jpg"),
+                  makeListinformation(
+                      text1: "Jungle",
+                      text2:
+                          "The Jungler is the hero responsible for farming jungle monsters, securing buffs, and helping teammates through rotations and ganks. The Jungler is one of the most important roles because they control the game's tempo.",
+                      image: "assets/images/me4.jpg"),
+                  makeListinformation(
+                      text1: "Jungle",
+                      text2:
+                          "A Tank is a durable hero with high HP and defense. Tanks are usually the front line of the team and protect teammates during battles. Their main job is to absorb damage and create opportunities for the team.",
+                      image: "assets/images/me4.jpg"),
+                ],
+              ),
             ),
             SizedBox(
               height: 20,
@@ -149,54 +165,65 @@ class _ProfileState extends State<Profile> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: currentIndex,
-          backgroundColor: Colors.lightGreen,
+          backgroundColor: Provider.of<Themeprovider>(context).isDark
+              ? Color.fromARGB(255, 147, 131, 37)
+              : Color(0xFFB0BEC5),
+          // backgroundColor: Colors.lightGreen,
           selectedItemColor: Colors.purple,
           unselectedItemColor: Colors.black,
           onTap: (index) {
             setState(() {
               currentIndex = index;
             });
+            switch (index) {
+              case 0:
+                context.go('/home');
+                break;
+              case 1:
+                context.go('/explore');
+                break;
+              case 2:
+                context.go('/ranking');
+                break;
+              case 3:
+                context.go('/profile');
+            }
           },
           items: [
             BottomNavigationBarItem(
-                icon: GestureDetector(
-                    onTap: () => context.go("/"), child: Icon(Icons.home)),
-                label: "home",
-                backgroundColor: pVider.isDark
-                    ? Color.fromARGB(255, 147, 131, 37)
-                    : Color(0xFFB0BEC5)),
+              icon: GestureDetector(
+                  onTap: () => context.go("/"), child: Icon(Icons.home)),
+              label: "home",
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.explore),
-                label: "Explore",
-                backgroundColor: pVider.isDark
-                    ? Color.fromARGB(255, 147, 131, 37)
-                    : Color(0xFFB0BEC5)),
+              icon: Icon(Icons.explore),
+              label: "Explore",
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.military_tech),
-                label: "Ranking",
-                backgroundColor: pVider.isDark
-                    ? Color.fromARGB(255, 147, 131, 37)
-                    : Color(0xFFB0BEC5)),
+              icon: Icon(Icons.military_tech),
+              label: "Ranking",
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: "Profile",
-                backgroundColor: pVider.isDark
-                    ? Color.fromARGB(255, 147, 131, 37)
-                    : Color(0xFFB0BEC5)),
+              icon: Icon(Icons.person),
+              label: "Profile",
+            ),
           ]),
     );
   }
 
+  //[Color(0xFF7B9E87), Color(0xFFC8A96E)]
   _profileData() {
     return Container(
       width: 400,
       height: 180,
       margin: EdgeInsets.all(17),
       decoration: BoxDecoration(
-          color: Provider.of<Themeprovider>(context).isDark
-              ? Color(0xFFC8A96E)
-              : Color(0xFF7B9E87),
+          border: Border.all(color: Colors.purple, width: 0.8),
+          gradient: LinearGradient(
+            colors: [Color(0xFF3D4A5C), Color(0xFFC8A965)],
+          ),
           borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
@@ -339,9 +366,10 @@ class _ProfileState extends State<Profile> {
           width: 170,
           height: 150,
           decoration: BoxDecoration(
-              color: Provider.of<Themeprovider>(context).isDark
-                  ? const Color.fromARGB(255, 104, 27, 21)
-                  : Color(0xFF7B9E87),
+              gradient: LinearGradient(colors: [
+                Color(0xFF3D4A5C),
+                Color(0xFFC8A965),
+              ], begin: Alignment.centerLeft, end: Alignment.bottomRight),
               borderRadius: BorderRadius.circular(25),
               border: Border.all(color: Colors.indigo, width: 1.5)),
           child: Column(
@@ -364,9 +392,10 @@ class _ProfileState extends State<Profile> {
           width: 170,
           height: 150,
           decoration: BoxDecoration(
-              color: Provider.of<Themeprovider>(context).isDark
-                  ? const Color.fromARGB(255, 104, 27, 21)
-                  : Color(0xFF7B9E87),
+              gradient: LinearGradient(colors: [
+                Color(0xFF3D4A5C),
+                Color(0xFFC8A965),
+              ], begin: Alignment.centerLeft, end: Alignment.bottomRight),
               borderRadius: BorderRadius.circular(25),
               border: Border.all(color: Colors.indigo, width: 1.5)),
           child: Column(
@@ -444,10 +473,21 @@ class _ProfileState extends State<Profile> {
       width: 170,
       height: 50,
       decoration: BoxDecoration(
-          color: Provider.of<Themeprovider>(context).isDark
-              ? Color(0xFFFF6B35)
-              : Color.fromARGB(255, 43, 31, 31),
-          borderRadius: BorderRadius.circular(16)),
+          gradient: LinearGradient(colors: [
+            Color(0xFF2E2A4A),
+            Color(0xFFC8C0E8),
+          ], begin: Alignment.centerLeft, end: Alignment.bottomRight),
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: [
+            BoxShadow(
+              color: Provider.of<Themeprovider>(context).isDark
+                  ? Colors.white.withOpacity(0.5)
+                  : Colors.purple.withOpacity(0.4),
+              blurRadius: 5,
+              spreadRadius: 1,
+              offset: Offset(3, 1),
+            )
+          ]),
       child: ElevatedButton.icon(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
@@ -468,55 +508,61 @@ class _ProfileState extends State<Profile> {
     required String image,
   }) {
     return Card(
-      color: Provider.of<Themeprovider>(context).isDark
-          ? const Color.fromARGB(255, 104, 27, 21)
-          : Color(0xFF7B9E87),
       elevation: Provider.of<Themeprovider>(context).isDark ? 5 : 2,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(10)),
       shadowColor: Provider.of<Themeprovider>(context).isDark
-          ? Colors.purpleAccent
+          ? Colors.white
           : Colors.purpleAccent,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 70,
-            height: 70,
-            child: ClipRRect(
-                borderRadius: BorderRadiusGeometry.circular(70),
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                )),
-          ),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Text(
-                    text1,
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-                Text(
-                  textAlign: TextAlign.justify,
-                  text2,
-                  style: TextStyle(fontSize: 14, color: Colors.white),
-                )
-              ],
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF3D4A5C), Color(0xFFC8A965)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
-          )),
-          Icon(
-            Icons.sports_esports,
-            color: Colors.white,
-          )
-        ],
+            borderRadius: BorderRadiusGeometry.circular(10)),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 70,
+              height: 70,
+              child: ClipRRect(
+                  borderRadius: BorderRadiusGeometry.circular(70),
+                  child: Image.asset(
+                    image,
+                    fit: BoxFit.cover,
+                  )),
+            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Text(
+                      text1,
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                  Text(
+                    textAlign: TextAlign.justify,
+                    text2,
+                    style: TextStyle(fontSize: 14, color: Colors.white),
+                  )
+                ],
+              ),
+            )),
+            Icon(
+              Icons.sports_esports,
+              color: Colors.white,
+            )
+          ],
+        ),
       ),
     );
   }
